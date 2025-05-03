@@ -17,5 +17,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: mode === "development" ? "/" : "/portfolio/om-prakash/", // Use root path for local dev and custom base for production
 }));
