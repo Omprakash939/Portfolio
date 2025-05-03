@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 170 80% 70%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Improve link visibility */
+  a:focus-visible {
+    @apply outline-offset-2 outline-accent;
+  }
+  
+  /* Improve button contrast */
+  button:focus-visible {
+    @apply outline-offset-2 outline-accent;
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply text-3xl font-bold mb-6 relative inline-block;
+  }
+  
+  .section-heading::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-1/2 h-1 bg-accent rounded-full;
+    transform: translateY(8px);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .blur-bg {
+    @apply backdrop-blur-lg bg-white/10;
+  }
+
+  .tech-tag {
+    @apply px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-medium;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-primary to-accent;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .glass-card {
+    @apply bg-muted/80 backdrop-blur-sm border border-white/5;
+  }
+  
+  .animated-border {
+    @apply relative z-10 overflow-hidden;
+  }
+  
+  .animated-border::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 bottom-0 z-[-1];
+    background: linear-gradient(90deg, var(--accent), var(--primary), var(--accent));
+    background-size: 200% 200%;
+    animation: border-animate 3s ease infinite;
+  }
+  
+  .animated-border::after {
+    content: '';
+    @apply absolute top-[1px] left-[1px] right-[1px] bottom-[1px] z-[-1] bg-background;
+  }
+  
+  @keyframes border-animate {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .glow {
+    @apply relative;
+  }
+  
+  .glow::after {
+    content: '';
+    @apply absolute -inset-1 rounded-lg blur-md bg-gradient-to-r from-primary to-accent opacity-75 -z-10 transition-opacity;
+  }
+  
+  .glow:hover::after {
+    @apply opacity-100;
+  }
+  
+  /* Improve clickable areas */
+  .nav-link {
+    @apply px-4 py-2 rounded-md hover:bg-accent/20 transition-colors;
+  }
+  
+  /* Make social icons more clickable */
+  .social-icon {
+    @apply p-2 rounded-full hover:bg-accent/20 transition-colors;
+  }
+}
